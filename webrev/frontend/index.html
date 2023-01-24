@@ -1,0 +1,153 @@
+<html>
+<header>
+    <title>Test page</title>
+    <style>
+        .iframe  {
+          overflow: hidden;
+          resize: both;
+        }
+:root {
+  color-scheme: light dark;
+  overflow:clipped;
+}
+body {
+  overflow: hidden;
+}
+#yois { display: none;}
+#but { display: none;}
+#togglePipButton { display: none;}
+    </style>
+</header>
+
+<body>
+    <div>
+        <button id="yois"  onclick="find()"></button>
+        <button id="but" onclick="getUsers()"></button>
+        <button id="togglePipButton" onclick="togglePictureInPicture()"></button>
+        
+        <div id="result-container"></div>
+    </div>
+   <!-- <div class='pywebview-drag-region'>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎</div>-->
+</body>
+<script>
+               const timer = setInterval(() => {
+  document.getElementById('but').click();
+}, 30000);
+
+document.querySelectorAll('iframe')
+                .forEach(iframe => iframe.remove());
+        var request = new XMLHttpRequest();
+
+request.send(null);
+if (request.status === 200) {// That's HTTP for 'ok'
+ const geek = request.responseText;
+ const fox = ("http://chaturbate.com/fullvideo/?b="+geek)
+        const ifrm = document.createElement("iframe");
+                ifrm.setAttribute("src", fox );
+                ifrm.style.width = "500px";
+                ifrm.style.height = "300px";
+                ifrm.setAttribute("id", "video" );
+       
+                document.body.appendChild(ifrm);
+}               
+else{}
+
+
+ 
+
+var myframe = document.getElementsByTagName("iframe")[0];
+
+myframe.id = "vide";
+        const vid = document.getElementById('newID');
+const pipBtn = document.getElementById('ppic');
+
+    
+    var xhr = null;
+
+    getXmlHttpRequestObject = function () {
+        if (!xhr) {
+            // Create a new XMLHttpRequest object 
+            xhr = new XMLHttpRequest();
+        }
+        return xhr;
+    };
+
+    
+
+    function togglePictureInPicture() {
+        const video = document.getElementById("vide");
+  const togglePipButton = document.getElementById("togglePipButton");
+
+  // Hide button if Picture-in-Picture is not supported or disabled.
+  togglePipButton.hidden =
+    !document.pictureInPictureEnabled || video.disablePictureInPicture;
+
+  togglePipButton.addEventListener("click", async () => {
+    // If there is no element in Picture-in-Picture yet, let’s request
+    // Picture-in-Picture for the video, otherwise leave it.
+    try {
+      if (document.pictureInPictureElement) {
+        await document.exitPictureInPicture();
+      } else {
+        await video.requestPictureInPicture();
+      }
+    } catch (err) {
+      // Video failed to enter/leave Picture-in-Picture mode.
+    }
+    
+  });
+}
+
+
+    function dataCallback() {
+        // Check response is ready or not
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("User data received!");
+            getDate();
+            dataDiv = document.getElementById('result-container');
+            // Set current data text
+            dataDiv.innerHTML = xhr.responseText;
+        }
+    }
+    function getUsers() {
+        
+
+  
+        var request = new XMLHttpRequest();
+request.open('GET', 'http://localhost:6969/users', false);  // `false` makes the request synchronous
+request.send(null);
+if (request.status === 200) {// That's HTTP for 'ok'
+ const geek = request.responseText;
+ const fox = ("http://chaturbate.com/fullvideo/?b="+geek)
+ document.getElementsByTagName("iframe")[0].src="http://chaturbate.com/fullvideo/?b="+geek;
+
+
+
+    }
+} 
+             
+    
+
+    function find(){
+        document.querySelectorAll('iframe')
+                .forEach(iframe => iframe.remove());
+        var request = new XMLHttpRequest();
+request.open('GET', 'http://localhost:6969/users', false);  // `false` makes the request synchronous
+request.send(null);
+if (request.status === 200) {// That's HTTP for 'ok'
+ const geek = request.responseText;
+ const fox = ("http://chaturbate.com/fullvideo/?b="+geek)
+        const ifrm = document.createElement("iframe");
+                ifrm.setAttribute("src", fox );
+                ifrm.style.width = "1680px";
+                ifrm.style.height = "840px";
+                ifrm.setAttribute(id, "video" );
+                document.body.appendChild(ifrm);
+ 
+}
+else{}
+}
+
+</script>
+
+</html>

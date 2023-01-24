@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<meta charset=utf-8 />
+<title>stream</title>
+  
+  <!--
+
+  Uses the latest versions of video.js and videojs-http-streaming.
+
+  To use specific versions, please change the URLs to the form:
+
+  <link href="https://unpkg.com/video.js@6.7.1/dist/video-js.css" rel="stylesheet">
+  <script src="https://unpkg.com/video.js@6.7.1/dist/video.js"></script>
+  <script src="https://unpkg.com/@videojs/http-streaming@0.9.0/dist/videojs-http-streaming.js"></script>
+
+  -->
+
+  <link href="video-js.css" rel="stylesheet">
+  <style>
+hr {
+    width:50%;
+    margin:1px;
+   
+}
+
+    .iframe  {
+      overflow: hidden;
+      resize: both;  
+    }
+
+
+:root {
+color-scheme: light dark;
+overflow:clipped;
+}
+body {
+overflow: hidden;
+}
+#yois { display: none;}
+#but { display: none;}
+#togglePipButton { display: none;}
+.mdi-star{
+  animation:fade2 1s linear;
+  display:table;
+    width:auto;
+    position:relative;
+    width:50%;
+    color: white;
+    
+}
+.mdi-star-outline{
+  color: white;
+  content: "\f103";
+} 
+
+.vjs-live-control{
+  cursor: pointer;
+}
+
+.mdi-star-outline:before {
+    content: "\f103"; }
+  
+
+.container{
+    position: relative;
+}
+.container>.vjs-icon-pause{
+
+    height: 128px;
+    left: 86%;
+    margin: -120px 50 0 -190px;
+    position: absolute;
+    top: 92%;
+    width: 0px;
+    font-weight: normal;
+    font-style: normal; 
+    z-index: 1; 
+    opacity: 1;
+    cursor: pointer;
+}
+.container>.vjs-icon-play{
+
+height: 128px;
+left: 86%;
+margin: -120px 50 0 -190px;
+position: absolute;
+top: 92%;
+width: 0px;
+z-index: 1; 
+opacity: 1;
+cursor: pointer;
+}
+.vjs-icon-pause{
+cursor: pointer;
+font-family: VideoJS;
+font-weight: normal;
+font-style: normal;
+font-size: 1.8em;
+vertical-align: middle;
+padding-left: 0.8em;
+padding-right: 0.8em;
+padding-bottom: 0.8em;
+padding-top: 0.3em;
+ 
+
+}
+
+.vjs-icon-play{
+cursor: pointer;
+font-family: VideoJS;
+font-weight: normal;
+font-style: normal;
+font-size: 1.8em;
+padding-left: 0.8em;
+padding-right: 0.8em;
+padding-bottom: 0.8em;
+padding-top: 0.3em;
+
+}
+.vjs-icon-next-item{
+cursor: pointer;
+font-family: VideoJS;
+font-weight: normal;
+font-style: normal;
+font-size: 1.8em;
+padding-left: 0.8em;
+padding-right: 0.8em;
+padding-bottom: 0.8em;
+padding-top: 0.3em;
+
+
+}
+
+.vjs-icon-previous-item{
+cursor: pointer;
+font-family: VideoJS;
+font-weight: normal;
+font-style: normal;
+font-size: 1.8em;
+padding-left: 0.8em;
+padding-right: 0.8em;
+padding-bottom: 0.8em;
+padding-top: 0.3em;
+}
+
+@keyframes fade1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+   opacity: 1;
+  }
+}
+
+@keyframes fade2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+   opacity: 1;
+  }
+}
+.video-js:focus {
+   outline-style: none !important;
+}
+.video-js .vjs-control:focus:before, .video-js .vjs-control:hover:before, .video-js .vjs-control:focus {
+  text-shadow: none;
+}
+.video-js .vjs-volume-panel .vjs-volume-control.vjs-slider-active.vjs-volume-vertical .vjs-volume-bar,
+.video-js .vjs-big-play-button,
+.vjs-flat-skin .vjs-fullscreen-control,
+.vjs-flat-skin .vjs-subtitles-button,
+.video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
+  /*Remove comma from end*/
+  border: none !important;
+  box-shadow: none !important;
+}
+
+</style>
+</head>
+<body>
+
+  
+    <button id="but" onclick="add()">ddddd</button>
+  
+
+  
+  <script src="video.js"></script>
+  <script src="videojs-http-streaming.js"></script>
+
+
+  
+  
+  <script>
+     var request = new XMLHttpRequest();
+     request.open('GET', 'https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=HNwJw&format=json&client_ip=192.168.1.114&limit=1&tag=teen&gender=f&offset=1', false); 
+     request.send(null);
+     const wee = JSON.parse(request.responseText)
+     const obj = JSON.parse(JSON.stringify(wee.results[0]))
+ const obs = JSON.parse(JSON.stringify(obj))
+ var player = videojs('my_video', {
+
+});
+ player.ready(function() {
+  
+  player.src({
+                //src: "https://edge8-hel.live.mmcdn.com/live-hls/amlst:"+geek+"/playlist.m3u8",
+                src: "https://edge8-hel.live.mmcdn.com/live-hls/amlst:"+obs.username+"/playlist.m3u8",
+                type: 'application/x-mpegURL',/*video type*/
+                
+            });
+          })
+  player.play();
+
+
+
+  </script>
+  </body>
+  </html>
